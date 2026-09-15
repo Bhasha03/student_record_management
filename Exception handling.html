@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converted from Markdown</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      color: #333;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    code {
+      background-color: #f4f4f4;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    blockquote {
+      border-left: 4px solid #ddd;
+      margin: 0;
+      padding-left: 1rem;
+      color: #666;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    th {
+      background-color: #f9f9f9;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="font-size: 2em; font-weight: bold; margin: 0.67em 0;">Classroom Test Sheet: Exceptions and Edge Cases</h1>
+<p>Run the program from this folder:</p>
+<pre style="background-color: #f4f4f4; padding: 1em; border-radius: 5px; overflow-x: auto; font-family: monospace;"><code class="language-powershell">python student_record_manager.py
+</code></pre>
+<p>Use the starter data in <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_records.json</code>. Before changing that file for a file-error demo, make a copy named <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_records_original.json</code> in the same folder. Restore it after each file test by renaming it back to <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_records.json</code>.</p>
+<h2 style="font-size: 1.5em; font-weight: bold; margin: 0.83em 0;">Normal validation and business edge cases</h2>
+<p>These are handled situations, but they do <strong style="font-weight: bold;">not</strong> use an <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">except</code> block. This distinction is worth making explicit to students.</p>
+<table style="border-collapse: collapse; width: 100%; margin: 1em 0;">
+<thead>
+<tr>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Demo</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Type at the menu / prompt</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Expected result</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Code location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Invalid menu choice</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">9</code>, then <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">hello</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Invalid menu option...</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:193-197</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Blank roll number</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">1</code>; Roll number: press Enter; then type <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU007</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">This value cannot be empty.</code> Then entry continues.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:63-69</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Duplicate roll number</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">1</code>; Roll number: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU001</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">A student with that roll number already exists.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:92-98</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Blank name</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">1</code>; Roll number: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU007</code>; Name: press Enter; then <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Ishaan Verma</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">This value cannot be empty.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:63-69</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Mark outside range</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">1</code>; Roll number: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU007</code>; Name: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Ishaan Verma</code>; Course: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Python Basics</code>; Mark: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">105</code>, then <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">82</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Enter a mark from 0 to 100.</code> Then record is saved with 82.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:72-81</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Student not found</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">3</code>; Roll number: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU999</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Student record not found.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:127-137</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Update unknown student</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">4</code>; Roll number: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU999</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Student record not found.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:140-151</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Empty list</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Temporarily rename <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_records.json</code>; run program; Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">2</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">First a file message, then <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">No student records available.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:112-116</code></td>
+</tr>
+</tbody>
+</table>
+<h2 style="font-size: 1.5em; font-weight: bold; margin: 0.83em 0;">Exception demonstrations</h2>
+<p>Stop the program before changing a file. In each test, start it again and observe the message at the first menu.</p>
+<table style="border-collapse: collapse; width: 100%; margin: 1em 0;">
+<thead>
+<tr>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Exception</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">How to create the test</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Expected result</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Code location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">ValueError</code> from user input</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Menu: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">1</code>; Roll number: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU007</code>; Name: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Ishaan Verma</code>; Course: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Python Basics</code>; Mark: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">eighty</code>; then <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">82</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Invalid mark. Enter a whole number...</code> The program continues.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:75-81</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">FileNotFoundError</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Rename <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_records.json</code> to <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">records_temporarily_hidden.json</code>.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">No records file found. Starting with an empty record list.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:31-33</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">json.JSONDecodeError</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Replace the whole contents of <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_records.json</code> with: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">[{"roll_number": "STU001", }]</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">The records file is not valid JSON...</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:34-36</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">ValueError</code>: wrong JSON structure</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Replace the whole contents with: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">{"roll_number": "STU007"}</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">The records file has an invalid structure: The records file should contain a list.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:24-25, 37-39</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">ValueError</code>: missing field</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Replace the whole contents with: <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">[{"roll_number": "STU007", "name": "Ishaan Verma", "course": "Python Basics"}]</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">The records file has an invalid structure: One or more records have missing fields.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:26-28, 37-39</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">KeyboardInterrupt</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">While the program is waiting for a menu choice, press <strong style="font-weight: bold;">Ctrl+C</strong>.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Program stopped by user.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:200-204</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">EOFError</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">On Windows, press <strong style="font-weight: bold;">Ctrl+Z</strong>, then Enter, at an input prompt.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Input ended. Program closed safely.</code></td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:205-206</code></td>
+</tr>
+</tbody>
+</table>
+<h2 style="font-size: 1.5em; font-weight: bold; margin: 0.83em 0;">Optional advanced exception demonstrations</h2>
+<p>These change code temporarily, so use them only after the core class demonstration. Undo the change immediately afterwards.</p>
+<table style="border-collapse: collapse; width: 100%; margin: 1em 0;">
+<thead>
+<tr>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Exception</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Temporary code change</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Trigger</th>
+<th style="border: 1px solid #ddd; padding: 0.5em; background-color: #f9f9f9; font-weight: bold;">Code location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">PermissionError</code> when reading</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">At line 13, replace <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">PROJECT_FOLDER / "student_records.json"</code> with <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">PROJECT_FOLDER</code> and run. A folder cannot be opened as a normal file.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Start program.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:20-45</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">PermissionError</code> when saving</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Make <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_records.json</code> read-only in File Explorer, then add a new student using <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU007</code>, <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Ishaan Verma</code>, <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">Python Basics</code>, <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">82</code>.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Save attempted after entry.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:48-60</code></td>
+</tr>
+<tr>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">TypeError</code> while saving JSON</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Immediately after line 104, temporarily add <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">record["extra"] = {"not", "json"}</code>. Then add a student. A Python <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">set</code> cannot be saved as JSON.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;">Save attempted after entry.</td>
+<td style="border: 1px solid #ddd; padding: 0.5em;"><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_record_manager.py:50-57</code></td>
+</tr>
+</tbody>
+</table>
+<p><code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">OSError</code> is intentionally handled at lines 43-45 and 58-59, but it is not ideal for a live classroom demo because its exact cause varies by machine (for example, a file-system or hardware issue). The more predictable file exceptions above are better teaching examples.</p>
+<h2 style="font-size: 1.5em; font-weight: bold; margin: 0.83em 0;">Restore after file tests</h2>
+<p>Put the original valid JSON back into <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">student_records.json</code>, then start the program and choose menu option <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">2</code>. Six starter records should display. The original data contains IDs <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU001</code> through <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU006</code>; use <code style="background-color: #f4f4f4; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace;">STU007</code> for safe add-record examples.</p>
+
+</body>
+</html>

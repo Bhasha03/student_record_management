@@ -1,0 +1,38 @@
+[
+    {
+        "roll_number": "STU001",
+        "name": "Aarav Sharma",
+        "course": "Python Basics",
+        "mark": 84
+    },
+    {
+        "roll_number": "STU002",
+        "name": "Diya Patel",
+        "course": "Python Basics",
+        "mark": 91
+    },
+    {
+        "roll_number": "STU003",
+        "name": "Kabir Singh",
+        "course": "Data Analytics",
+        "mark": 76
+    },
+    {
+        "roll_number": "STU004",
+        "name": "Meera Nair",
+        "course": "Data Analytics",
+        "mark": 85
+    },
+    {
+        "roll_number": "STU005",
+        "name": "Rohan Gupta",
+        "course": "Web Development",
+        "mark": 69
+    },
+    {
+        "roll_number": "STU006",
+        "name": "Sara Khan",
+        "course": "Web Development",
+        "mark": 90
+    }
+]

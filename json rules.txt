@@ -1,0 +1,10 @@
+The full JSON type system:
+
+JSON type	           Example	      Python equivalent
+================================================================
+object	                   {"a": 1}	           dict
+array	                   [1, 2, 3]	           list
+string	                   "text"	           str
+number	                   42 or 3.14	         int / float
+boolean	                true / false	       True / False
+null	                     null	           None
